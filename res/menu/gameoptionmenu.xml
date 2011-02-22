@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/goal_menu_item"
+          android:title="@string/GameOptionMenuGoal"
+          android:alphabeticShortcut="G"
+          android:icon="@android:drawable/ic_menu_compass" />
+    <item android:id="@+id/theme_menu_item"
+          android:title="@string/GameOptionMenuTheme"
+          android:alphabeticShortcut="T"
+          android:icon="@android:drawable/ic_menu_gallery" />
+    <item android:id="@+id/reset_menu_item"
+          android:title="@string/GameOptionMenuReset"
+          android:alphabeticShortcut="R"
+          android:icon="@android:drawable/ic_menu_revert" />       
+    <item android:id="@+id/about_menu_item"
+          android:title="@string/GameOptionMenuAbout"
+          android:alphabeticShortcut="A"
+          android:icon="@android:drawable/ic_menu_info_details" />
+</menu>

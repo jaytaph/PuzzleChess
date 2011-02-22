@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chesspuzzles</string>
+    
+    <string name="GameOptionMenuGoal">Goal</string>
+    <string name="GameOptionMenuReset">Reset game</string>
+    <string name="GameOptionMenuTheme">Change theme</string>
+    <string name="GameOptionMenuAbout">About</string>
+    
+    
+    <string name="OptionMenuResetAll">Reset all games</string>
+    <string name="OptionMenuAbout">About</string>
+    
+    <string name="ContextMenuReset">Reset this game</string>
+    <string name="ContextMenuPlay">Play this game</string>
+    
+    <string name="generalAboutTitle">About...</string>
+    <string name="generalAboutButtonCaption">Close</string>
+    <string name="generalAboutMessage">ChessPuzzles is created by NoxLogic. For more info visit www.noxlogic.nl\n\nCopyright (C) 2010 NoxLogic</string>
+    
+    <string name="generalGoalTitle">Goal...</string>
+    <string name="generalGoalButtonCaption">Start game</string>
+    <string name="generalGoalButtonResumeCaption">Resume</string>
+    
+    <string name="modeLost">You have lost :()</string>
+    <string name="modeWon">You have won!</string>
+</resources>
