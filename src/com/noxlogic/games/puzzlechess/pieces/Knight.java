@@ -9,42 +9,9 @@ public class Knight extends Piece {
 		super(tag, color);
 	}
 
-	protected ArrayList<int[]> _getAvailableMoves() {
-		int x, y;		
+	protected ArrayList<int[]> _getAvailableMoves() {	
 		ArrayList<int[]> ret = new ArrayList<int[]>();
-		
-		x = getX()+1; 
-		y = getY()-2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+2; 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+2; 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+1; 
-		y = getY()+2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-1; 
-		y = getY()+2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-2; 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-2; 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-1; 
-		y = getY()-2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-		
+		ret = knightMoves(ret);
 		return ret;
 	}
 

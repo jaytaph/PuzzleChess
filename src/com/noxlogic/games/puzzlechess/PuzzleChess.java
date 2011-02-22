@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,8 +19,8 @@ public class PuzzleChess extends Activity {
 	protected int _theme_id = 0;
 	protected boolean _trigger_onResume = false;
 
-	protected static final int MESSAGE_DURATION = 0x1000;
-	protected static final int MESSAGE_UPDATE	= 0x1001;
+	protected static final int MESSAGE_DURATION = 0x1000;		// Message fired every second (1s)
+	protected static final int MESSAGE_UPDATE	= 0x1001;		// Message fired when update is needed (10ms)
 			
 	class timerThread implements Runnable{
 		public void run() {
@@ -52,7 +51,6 @@ public class PuzzleChess extends Activity {
         _panel = (ChessPanelView)findViewById(R.id.ChessPanel01);
         _panel.setActivity(this);
         _panel.setGame(app.getGame());
-
         
         // Create chess thread for updates
         _panel_thread = new ChessThread(this, 10, PuzzleChess.MESSAGE_UPDATE);
@@ -77,6 +75,7 @@ public class PuzzleChess extends Activity {
              })
 			.setMessage(app.getGame().getObjective())
 			.create();
+		
 		goal.show();          
     }
     
@@ -88,28 +87,34 @@ public class PuzzleChess extends Activity {
         	switch (msg.what) {
         		case MESSAGE_UPDATE :
             		_panel.update();
-            		
+            	            		
             		// Check state
             		boolean lost = _panel.getGame().hasLost();
             		boolean won = _panel.getGame().hasWon();
             		if (lost || won) {
-            			// _panel_thread.stop();
-            			// _timer_thread.stop();
+                		// Stop timer and panel updates
+                        _timer_thread.setRunning(false);
+                        _panel_thread.setRunning(false);
+                                    			
+                        // Display end results
             			String s = "";
-            			if (won) s = "You have solved this game";
-            			if (lost) s = "You have lost... :(";
+            			if (won) s = "Congratulations. You have completed this game.";
+            			if (lost) s = "Sorry. You've lost.";
             			
         			    new AlertDialog.Builder(PuzzleChess.this)
     			    	.setIcon(android.R.drawable.ic_dialog_alert)
-    			    	.setTitle("Game over")
+    			    	.setTitle("Game ended")
     			    	.setMessage(s)
     			    	.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     			    			public void onClick(DialogInterface dialog, int which) {
+    		                        // Reset game
+    		                        _panel.getGame().reset();
+
+    			    				// After the click, we return to main menu
     			    				finish();
     			    			}
     			    	})
     			    	.show();
-            			
             		}
             		break;
             	case MESSAGE_DURATION :
@@ -204,7 +209,7 @@ public class PuzzleChess extends Activity {
     }
     
     public void onPause () {
-    	Log.d("knights", "onPause()");
+//    	Log.d("knights", "onPause()");
         _timer_thread.setRunning(false);
         _panel_thread.setRunning(false);
         
@@ -212,9 +217,9 @@ public class PuzzleChess extends Activity {
     }
     
     public void onResume () {
-    	Log.d("knights", "onResume()");
+//    	Log.d("knights", "onResume()");
     	if (_trigger_onResume) {
-    		Log.d("knights", "resuming threads");
+//    		Log.d("knights", "resuming threads");
     		_timer_thread.setRunning(true);
     		_panel_thread.setRunning(true);
     	}

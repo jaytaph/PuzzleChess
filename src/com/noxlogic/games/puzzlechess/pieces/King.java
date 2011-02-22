@@ -9,42 +9,11 @@ public class King extends Piece {
 		super(tag, color);
 	}
 
-	protected ArrayList<int[]> _getAvailableMoves() {
-		int x, y;		
+	protected ArrayList<int[]> _getAvailableMoves() {	
 		ArrayList<int[]> ret = new ArrayList<int[]>();
-		
-		x = getX()-1; 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX(); 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+1; 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-1; 
-		y = getY();
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+1; 
-		y = getY();
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()-1; 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX(); 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX()+1; 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-		
+		ret = singleDiagonalMoves(ret);
+		ret = singleLeftRightMoves(ret);
+		ret = singleUpDownMoves(ret);
 		return ret;
 	}
 

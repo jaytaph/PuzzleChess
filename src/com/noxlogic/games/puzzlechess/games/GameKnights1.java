@@ -9,12 +9,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
+import android.util.Log;
 
 public class GameKnights1 extends Game {	
 
-	void init() {
-		setGameOptions(Game.GAMEOPTION_UNLIMITEDMOVES);
-		
+	void initBoard() {
 		boolean[][] fields = new boolean[8][8];
 		for (int y=0; y!=8; y++) {
 			for (int x=0; x!=8; x++) {
@@ -24,7 +23,7 @@ public class GameKnights1 extends Game {
 		fields[2][1] = true;	fields[2][2] = true;	fields[3][2] = true;
 		fields[4][2] = true;	fields[5][2] = true;	fields[2][3] = true;
 		fields[3][3] = true;	fields[4][3] = true;	fields[2][4] = true;
-		fields[3][4] = true;	fields[2][5] = true;
+		fields[3][4] = true;
 		
 		// Create new board
 		Board board = new Board(this, fields);
@@ -43,6 +42,11 @@ public class GameKnights1 extends Game {
 		addBoard(board);
 	}
 	
+	void init() {
+		setGameOptions(Game.GAMEOPTION_UNLIMITEDMOVES);
+		initBoard();
+	}
+	
 	Bitmap plotDot(int color) {
 		Bitmap bmp = Bitmap.createBitmap(320, 320, Config.ARGB_8888);
 		Canvas bitmapcanvas = new Canvas(bmp);
@@ -56,7 +60,29 @@ public class GameKnights1 extends Game {
 	
 
 	public boolean hasWon() {
-		return false;
+		int correctPieces = 0;
+		Piece p;
+		
+		Board board = getBoard();
+		
+		p = board.findPiece("wk1");
+		if (p.getX() == 3 && p.getY() == 3) { correctPieces++; }
+		if (p.getX() == 5 && p.getY() == 2) { correctPieces++; }
+		
+		p = board.findPiece("wk2");
+		if (p.getX() == 3 && p.getY() == 3) { correctPieces++; }
+		if (p.getX() == 5 && p.getY() == 2) { correctPieces++; }
+
+		p = board.findPiece("bk1");
+		if (p.getX() == 2 && p.getY() == 1) { correctPieces++; }
+		if (p.getX() == 2 && p.getY() == 3) { correctPieces++; }
+		
+		p = board.findPiece("bk2");
+		if (p.getX() == 2 && p.getY() == 1) { correctPieces++; }
+		if (p.getX() == 2 && p.getY() == 3) { correctPieces++; }
+		
+		Log.d("knight", "Correct pieces: "+correctPieces);
+		return (correctPieces >= 1);
 	}
 
 	public String getObjective() {

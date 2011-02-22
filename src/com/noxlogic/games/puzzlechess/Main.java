@@ -1,6 +1,5 @@
 package com.noxlogic.games.puzzlechess;
 
-
 // @TODO: Implement game status & resets
 // @TODO: Scalable boards + pieces
 // @TODO: Add pieces
@@ -8,9 +7,14 @@ package com.noxlogic.games.puzzlechess;
 import java.util.ArrayList;
 
 import com.noxlogic.games.puzzlechess.games.Game;
+import com.noxlogic.games.puzzlechess.games.GameBishop1;
 import com.noxlogic.games.puzzlechess.games.GameKnights1;
 import com.noxlogic.games.puzzlechess.games.GameKnights2;
+import com.noxlogic.games.puzzlechess.games.GameKnights3;
 import com.noxlogic.games.puzzlechess.games.GameQueen1;
+import com.noxlogic.games.puzzlechess.games.GameQueen2;
+import com.noxlogic.games.puzzlechess.games.GameQueen3;
+import com.noxlogic.games.puzzlechess.games.GameTest1;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -45,6 +49,15 @@ public class Main extends Activity {
 		
 		// These are all the puzzles that are inside this game
 		GameRow gr;		
+		
+		gr = new GameRow();
+		gr.resource = R.drawable.wn;
+		gr.difficulty = 3;
+		gr.title = "TEST";
+		gr.subtitle = "TEST TEST";
+		gr.game = new GameTest1();
+		games.add(gr);
+		
 		gr = new GameRow();
 		gr.resource = R.drawable.wn;
 		gr.difficulty = 3;
@@ -62,28 +75,45 @@ public class Main extends Activity {
 		games.add(gr);
 		
 		gr = new GameRow();
+		gr.resource = R.drawable.wn;
+		gr.difficulty = 5;
+		gr.title = "Knights #3";
+		gr.subtitle = "Switch the knights around";
+		gr.game = new GameKnights3();
+		games.add(gr);
+		
+		gr = new GameRow();
 		gr.resource = R.drawable.wq;
-		gr.difficulty = 2;
-		gr.title = "Kings mate";
-		gr.subtitle = "Checkmate the white king";
+		gr.difficulty = 1;
+		gr.title = "Queens #1";
+		gr.subtitle = "";
 		gr.game = new GameQueen1();
 		games.add(gr);
 		
 		gr = new GameRow();
 		gr.resource = R.drawable.wq;
 		gr.difficulty = 2;
-		gr.title = "Something else";
-		gr.subtitle = "Switch the knights around";
-		gr.game = new GameKnights1();
+		gr.title = "Queens #2";
+		gr.subtitle = "";
+		gr.game = new GameQueen2();
 		games.add(gr);
 		
 		gr = new GameRow();
-		gr.resource = R.drawable.wk;
-		gr.difficulty = 5;
-		gr.title = "Very difficult thingie";
-		gr.subtitle = "Switch the knights around";
-		gr.game = new GameKnights1();
+		gr.resource = R.drawable.wq;
+		gr.difficulty = 3;
+		gr.title = "Queens #3";
+		gr.subtitle = "";
+		gr.game = new GameQueen3();
 		games.add(gr);
+		
+		gr = new GameRow();
+		gr.resource = R.drawable.wb;
+		gr.difficulty = 2;
+		gr.title = "Bishop #1";
+		gr.subtitle = "";
+		gr.game = new GameBishop1();
+		games.add(gr);
+		
 		
 		// Create  
 		super.onCreate(icicle);
@@ -139,7 +169,7 @@ public class Main extends Activity {
     	AdapterView.AdapterContextMenuInfo listrow = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
     	
     	// Get gamerow depending on the item selected
-    	GameRow gr = games.get((int)listrow.id);
+    	final GameRow gr = games.get((int)listrow.id);
     	the_id = (int)listrow.id;
     	
     	switch (item.getItemId()) {
@@ -150,7 +180,7 @@ public class Main extends Activity {
     													 .setMessage("Are you sure you want to reset this game?")
     													 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
     														 	public void onClick(DialogInterface dialog, int which) {
-    									    						// @TODO: Add reset for game
+    														 		gr.game.reset();
     														 	}
 
     													 })

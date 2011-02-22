@@ -11,17 +11,9 @@ public class Queen extends Piece {
 	}
 
 	protected ArrayList<int[]> _getAvailableMoves() {
-		int x, y;		
 		ArrayList<int[]> ret = new ArrayList<int[]>();
-		
-		x = getX(); 
-		y = getY()+1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
-		x = getX(); 
-		y = getY()-1;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
+		ret = straightMoves(ret);
+		ret = diagonalMoves(ret);
 		return ret;
 	}
 

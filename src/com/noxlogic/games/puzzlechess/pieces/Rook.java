@@ -9,14 +9,9 @@ public class Rook extends Piece {
 		super(tag, color);
 	}
 
-	protected ArrayList<int[]> _getAvailableMoves() {
-		int x, y;		
+	protected ArrayList<int[]> _getAvailableMoves() {	
 		ArrayList<int[]> ret = new ArrayList<int[]>();
-		
-		x = getX()+1; 
-		y = getY()-2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
+		ret = straightMoves(ret);
 		return ret;
 	}
 

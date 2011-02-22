@@ -5,18 +5,13 @@ import com.noxlogic.games.puzzlechess.R;
 
 public class Pawn extends Piece {
 
-	Pawn(String tag, int color) {
+	public Pawn(String tag, int color) {
 		super(tag, color);
 	}
 
 	protected ArrayList<int[]> _getAvailableMoves() {
-		int x, y;		
-		ArrayList<int[]> ret = new ArrayList<int[]>();
-		
-		x = getX()+1; 
-		y = getY()-2;
-		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
-
+		ArrayList<int[]> ret = new ArrayList<int[]>();		
+		ret = singleUpDownMoves(ret);
 		return ret;
 	}
 

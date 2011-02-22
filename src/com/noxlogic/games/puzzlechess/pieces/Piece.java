@@ -133,6 +133,128 @@ public abstract class Piece {
 	}
 	
 	
+	ArrayList<int[]> straightMoves(ArrayList<int[]> ret) {
+		int x,y;
+		
+		for (y=getY()-1; y>=0; y--)  
+			if (isValidAvailableField(getX(), y)) { ret.add(new int[] {getX(), y}); } else { break; }
+		for (y=getY()+1; y<=7; y++)  
+			if (isValidAvailableField(getX(), y)) { ret.add(new int[] {getX(), y}); } else { break; }
+	
+		for (x=getX()-1; x>=0; x--)  
+			if (isValidAvailableField(x, getY())) { ret.add(new int[] {x, getY()}); } else { break; }
+		for (x=getX()+1; x<=7; x++)  
+			if (isValidAvailableField(x, getY())) { ret.add(new int[] {x, getY()}); } else { break; }
+		
+		return ret;
+	}
+	
+	ArrayList<int[]> diagonalMoves(ArrayList<int[]> ret) {
+		int y,i,j;
+		
+		for (i=-1,y=getY()-1; y>=0; y--,i--)
+			if (isValidAvailableField(getX()-i, y)) { ret.add(new int[] {getX()-i, y}); } else { break; }
+		for (j=1,y=getY()-1; y>=0; y--,j++)
+			if (isValidAvailableField(getX()-j, y)) { ret.add(new int[] {getX()-j, y}); } else { break; }
+
+		for (i=-1,y=getY()+1; y<=7; y++,i--) 
+			if (isValidAvailableField(getX()-i, y)) { ret.add(new int[] {getX()-i, y}); } else { break; }
+		for (j=1,y=getY()+1; y<=7; y++,j++)
+			if (isValidAvailableField(getX()-j, y)) { ret.add(new int[] {getX()-j, y}); } else { break; }
+
+		return ret;
+	}
+	
+	ArrayList<int[]> knightMoves(ArrayList<int[]> ret) {
+		int x,y;
+		
+		x = getX()+1; 
+		y = getY()-2;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()+2; 
+		y = getY()-1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()+2; 
+		y = getY()+1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()+1; 
+		y = getY()+2;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()-1; 
+		y = getY()+2;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()-2; 
+		y = getY()+1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()-2; 
+		y = getY()-1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()-1; 
+		y = getY()-2;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+		
+		return ret;
+	}
+	
+
+	
+	ArrayList<int[]> singleUpDownMoves(ArrayList<int[]> ret) {
+		int x,y;
+		
+		x = getX(); 
+		y = getY()-1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+	
+		x = getX(); 
+		y = getY()+1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+		
+		return ret;
+	}
+	
+	ArrayList<int[]> singleLeftRightMoves(ArrayList<int[]> ret) {
+		int x,y;
+	
+		x = getX()-1; 
+		y = getY();
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()+1; 
+		y = getY();
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		return ret;
+	}
+	
+	ArrayList<int[]> singleDiagonalMoves(ArrayList<int[]> ret) {
+		int x,y;
+		
+		x = getX()-1; 
+		y = getY()-1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+		
+		x = getX()+1; 
+		y = getY()-1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+		
+		x = getX()-1; 
+		y = getY()+1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		x = getX()+1; 
+		y = getY()+1;
+		if (isValidAvailableField(x, y)) ret.add(new int[] {x, y});
+
+		return ret;
+	}
+
 	
 	
 }

@@ -1,12 +1,8 @@
 package com.noxlogic.games.puzzlechess;
 
-import java.util.Random;
-
 import com.noxlogic.games.puzzlechess.games.Game;
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.graphics.Bitmap;
@@ -55,10 +51,7 @@ public class ChessPanelView extends View {
     	}
     }
     
-    public void onDraw(Canvas canvas) {
-    	Random r = new Random();
-    	Log.d ("knights", "onDraw() called "+r.nextInt());
-    	
+    public void onDraw(Canvas canvas) {    	
     	canvas.drawColor(Color.BLACK);
     	
     	// Draw background

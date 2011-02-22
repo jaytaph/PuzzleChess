@@ -81,7 +81,7 @@ public class Board {
 	 * @param tag
 	 * @return
 	 */
-	Piece findPiece(String tag) {
+	public Piece findPiece(String tag) {
 		for (Piece p : _pieces) {
 			if (p.getTag() == tag) return p;
 		}

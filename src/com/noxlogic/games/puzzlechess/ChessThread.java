@@ -1,8 +1,6 @@
 package com.noxlogic.games.puzzlechess;
 
 import android.os.Message;
-import android.util.Log;
-
 
 class ChessThread extends Thread {
 	protected PuzzleChess _activity;			// Need to know where to send messages to.
@@ -26,7 +24,7 @@ class ChessThread extends Thread {
      * @param state
      */
 	public void setRunning(boolean state) {
-		Log.d("knights", "SetRunning "+state);
+//		Log.d("knights", "SetRunning "+state);
 		_running = state;
 	}
 	

@@ -4,9 +4,9 @@ import com.noxlogic.games.puzzlechess.Board;
 import com.noxlogic.games.puzzlechess.pieces.Piece;
 import com.noxlogic.games.puzzlechess.pieces.Queen;
 
-public class GameQueen1 extends Game {	
+public class GameQueen2 extends Game {	
 	
-	void init() {		
+	void init() {	
 		setGameOptions(GAMEOPTION_UNLIMITEDMOVES);
 		
 		boolean[][] fields = new boolean[8][8];
@@ -16,8 +16,8 @@ public class GameQueen1 extends Game {
 			}
 		}
 		
-		for (int y=2; y!=6; y++) {
-			for (int x=2; x!=6; x++) {
+		for (int y=1; y!=6; y++) {
+			for (int x=1; x!=6; x++) {
 				fields[x][y] = true;
 			}
 		}
@@ -26,10 +26,11 @@ public class GameQueen1 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Queen("wq1", Piece.WHITE), 2, 2);
-		board.addPiece(new Queen("wq2", Piece.WHITE), 3, 2);
-		board.addPiece(new Queen("wq3", Piece.WHITE), 4, 2);
-		board.addPiece(new Queen("wq4", Piece.WHITE), 5, 2);
+		board.addPiece(new Queen("bq1", Piece.BLACK), 1, 1);
+		board.addPiece(new Queen("bq2", Piece.BLACK), 2, 1);
+		board.addPiece(new Queen("bq3", Piece.BLACK), 3, 1);
+		board.addPiece(new Queen("bq4", Piece.BLACK), 4, 1);
+		board.addPiece(new Queen("bq5", Piece.BLACK), 5, 1);
 				
 		addBoard(board);
 	}
