@@ -14,6 +14,7 @@ import com.noxlogic.games.puzzlechess.games.GameKnights3;
 import com.noxlogic.games.puzzlechess.games.GameQueen1;
 import com.noxlogic.games.puzzlechess.games.GameQueen2;
 import com.noxlogic.games.puzzlechess.games.GameQueen3;
+import com.noxlogic.games.puzzlechess.games.GameQueen4;
 import com.noxlogic.games.puzzlechess.games.GameTest1;
 
 import android.app.Activity;
@@ -104,6 +105,14 @@ public class Main extends Activity {
 		gr.title = "Queens #3";
 		gr.subtitle = "";
 		gr.game = new GameQueen3();
+		games.add(gr);
+		
+		gr = new GameRow();
+		gr.resource = R.drawable.wq;
+		gr.difficulty = 3;
+		gr.title = "Queens #4";
+		gr.subtitle = "";
+		gr.game = new GameQueen4();
 		games.add(gr);
 		
 		gr = new GameRow();

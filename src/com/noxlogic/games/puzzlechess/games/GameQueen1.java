@@ -39,8 +39,7 @@ public class GameQueen1 extends Game {
 	}
 
 	public String getObjective() {
-		// @TODO: FILL LATER
-		return "abc";
+		return "Place all queens in such a pattern that none of them have another queen in line of sight.";
 	}
 
 }

@@ -81,8 +81,7 @@ public class GameKnights1 extends Game {
 		if (p.getX() == 2 && p.getY() == 1) { correctPieces++; }
 		if (p.getX() == 2 && p.getY() == 3) { correctPieces++; }
 		
-		Log.d("knight", "Correct pieces: "+correctPieces);
-		return (correctPieces >= 1);
+		return (correctPieces >= 4);
 	}
 
 	public String getObjective() {

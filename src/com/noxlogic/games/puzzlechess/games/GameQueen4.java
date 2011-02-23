@@ -4,7 +4,7 @@ import com.noxlogic.games.puzzlechess.Board;
 import com.noxlogic.games.puzzlechess.pieces.Piece;
 import com.noxlogic.games.puzzlechess.pieces.Queen;
 
-public class GameQueen3 extends Game {	
+public class GameQueen4 extends Game {	
 	
 	void init() {	
 		setGameOptions(GAMEOPTION_UNLIMITEDMOVES);
@@ -12,6 +12,12 @@ public class GameQueen3 extends Game {
 		boolean[][] fields = new boolean[8][8];
 		for (int y=0; y!=8; y++) {
 			for (int x=0; x!=8; x++) {
+				fields[x][y] = false;
+			}
+		}
+		
+		for (int y=1; y!=6; y++) {
+			for (int x=1; x!=6; x++) {
 				fields[x][y] = true;
 			}
 		}
@@ -20,14 +26,9 @@ public class GameQueen3 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Queen("wq1", Piece.WHITE), 0, 0);
-		board.addPiece(new Queen("wq2", Piece.WHITE), 1, 0);
-		board.addPiece(new Queen("wq3", Piece.WHITE), 2, 0);
-		board.addPiece(new Queen("wq4", Piece.WHITE), 3, 0);
-		board.addPiece(new Queen("wq5", Piece.WHITE), 4, 0);
-		board.addPiece(new Queen("wq6", Piece.WHITE), 5, 0);
-		board.addPiece(new Queen("wq7", Piece.WHITE), 6, 0);
-		board.addPiece(new Queen("wq8", Piece.WHITE), 7, 0);
+		board.addPiece(new Queen("wq1", Piece.WHITE), 3, 3);
+		board.addPiece(new Queen("wq2", Piece.WHITE), 4, 4);
+		board.addPiece(new Queen("wq3", Piece.WHITE), 5, 5);
 			
 		addBoard(board);
 	}
@@ -37,7 +38,7 @@ public class GameQueen3 extends Game {
 	}
 
 	public String getObjective() {
-		return "Place all queens in such a pattern that none of them have another queen in line of sight.";
+		return "Place all queens in such a pattern that fields are in line of sight of a queen.";
 	}
 
 }
