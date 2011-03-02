@@ -5,8 +5,8 @@ import com.noxlogic.games.puzzlechess.R;
 
 public class Rook extends Piece {
 
-	public Rook(String tag, int color) {
-		super(tag, color);
+	public Rook(String tag, int color, boolean moveable) {
+		super(tag, color, moveable);
 	}
 
 	protected ArrayList<int[]> _getAvailableMoves() {	

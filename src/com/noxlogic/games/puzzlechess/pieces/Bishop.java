@@ -6,8 +6,8 @@ import com.noxlogic.games.puzzlechess.R;
 
 public class Bishop extends Piece {
 
-	public Bishop(String tag, int color) {
-		super(tag, color);
+	public Bishop(String tag, int color, boolean moveable) {
+		super(tag, color, moveable);
 	}
 
 	protected ArrayList<int[]> _getAvailableMoves() {

@@ -5,8 +5,8 @@ import com.noxlogic.games.puzzlechess.R;
 
 public class Pawn extends Piece {
 
-	public Pawn(String tag, int color) {
-		super(tag, color);
+	public Pawn(String tag, int color, boolean moveable) {
+		super(tag, color, moveable);
 	}
 
 	protected ArrayList<int[]> _getAvailableMoves() {

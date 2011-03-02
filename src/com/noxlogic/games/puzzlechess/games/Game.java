@@ -9,23 +9,23 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 abstract public class Game {
-	protected int _movesDone = 0;
-	protected int _movesLeft = 0;
-	protected int _time = 0;
-	protected Board _board;
-	protected History _history;
-	protected int _selected_x = -1;
-	protected int _selected_y = -1;
-	protected int _game_options = 0;
-	protected String _error = "";
-			
+	protected int _movesDone = 0;		// Number of moves that are done
+	protected int _movesLeft = 0;		// Number of moves that are left
+	protected int _time = 0;			// Current time spend on puzzle
+	protected Board _board;				// The actual board
+	protected History _history;			// History (not used)
+	protected int _selected_x = -1;		// Selected cell X position
+	protected int _selected_y = -1;		// Selected cell Y position
+	protected int _game_options = 0;	// Game options (bitwise options, see GAMEOPTION_*)
+	protected String _error = "";		// Current error (@TODO: still used?
+			 
 	// Set to true when something has changed...
-	protected boolean _drawstate = true;
+	protected boolean _drawstate = true;		
 	
-	public static final int GAMEOPTION_CANOVERTAKE 			= 1;
-	public static final int GAMEOPTION_UNLIMITEDMOVES 		= 2;
-	public static final int GAMEOPTION_WHITEFIXED			= 4;
-	public static final int GAMEOPTION_BLACKFIXED			= 8;
+	// Public constants
+	public static final int GAMEOPTION_CANOVERTAKE 			= 1;	// Piece can hit another piece
+	public static final int GAMEOPTION_UNLIMITEDMOVES 		= 2;	// Unlimited amount of moves
+	public static final int GAMEOPTION_TRACEMOVES			= 4;	// Display trace of movement (cannot hit a trace)
 		
 	abstract void init ();
 	
@@ -138,23 +138,32 @@ abstract public class Game {
 			int dst_y = field[1];
 			if (dst_x == x && dst_y == y) allowed_move = true;
 		}
+		
+		// No moves allowed
 		if (! allowed_move) {
 			setError("Cannot move to here");
 			return;
 		}
 				
+		// Check if we may overtake 
 		if (dst_piece != null && ! hasGameOption(GAMEOPTION_CANOVERTAKE)) {
 			setError ("Cannot overtake");
 			return;
 		}
 		
+		// Off course, we can never overtake our own color
 		if (dst_piece != null && dst_piece.getColor() == src_piece.getColor()) {
 			setError ("Overtaking of the same color is not allowed");
 			return;
 		}
 		
+		
+		// @TODO: I'm not quite sure what this code actually does anymore :(
+		
+		// Check if we can move the piece
 		boolean move_piece = false;
 		if (dst_piece == null) {
+			// We can, since there is nothing on destination present
 			move_piece = true;
 		} else {
 			for (int[] field : dst_piece.getAvailableMoves()) {
@@ -164,17 +173,23 @@ abstract public class Game {
 			}
 		}
 		
+		// We are allowed to move
 		if (move_piece) {
+			// Move the actual piece
 			_board.movePiece(src_piece, x, y);
 			
+			// Increase our moves, and decrease the moves_left-counter
 			_movesDone++;
 			if (_movesLeft > 0) _movesLeft--;
 			
+			// Add to history
 //			_history.addMove(_selected_x, _selected_y, x, y);
 			
+			// Unselect cell again
 			_selected_x = -1;
 			_selected_y = -1;
-			
+
+			// Remove all borders
 			_board.removeAllBorderColors ();
 			return;
 		}
@@ -183,16 +198,19 @@ abstract public class Game {
 	}
 	
 	public void onClick (int x, int y) {
+		// Nothing selected
 		if (_selected_x == -1) {
 			_onClickNoSelection(x, y);
 			return;
 		}
 		
+		// The selected field is clicked again
 		if (_selected_x == x && _selected_y == y) {
 			_onClickSelectionSameField(x, y);
 			return;
 		}
 		
+		// Another field has been clicked
 		if (_selected_x != x || _selected_y != y) {
 			_onClickSelectionOtherField(x, y);
 			return;
