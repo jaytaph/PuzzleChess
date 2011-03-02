@@ -32,31 +32,31 @@ public class GameKnights3 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Knight("bk1", Piece.BLACK), 1, 1);
-		board.addPiece(new Knight("bk2", Piece.BLACK), 2, 1);
-		board.addPiece(new Knight("bk3", Piece.BLACK), 3, 1);
-		board.addPiece(new Knight("bk4", Piece.BLACK), 4, 1);
-		board.addPiece(new Knight("bk5", Piece.BLACK), 1, 2);
-		board.addPiece(new Knight("bk6", Piece.BLACK), 2, 2);
-		board.addPiece(new Knight("bk7", Piece.BLACK), 3, 2);
-		board.addPiece(new Knight("bk8", Piece.BLACK), 1, 3);
-		board.addPiece(new Knight("bk9", Piece.BLACK), 2, 3);
-		board.addPiece(new Knight("bk10", Piece.BLACK), 1, 4);
-		board.addPiece(new Knight("bk11", Piece.BLACK), 2, 4);
-		board.addPiece(new Knight("bk12", Piece.BLACK), 1, 5);
+		board.addPiece(new Knight("bk1", Piece.BLACK, true), 1, 1);
+		board.addPiece(new Knight("bk2", Piece.BLACK, true), 2, 1);
+		board.addPiece(new Knight("bk3", Piece.BLACK, true), 3, 1);
+		board.addPiece(new Knight("bk4", Piece.BLACK, true), 4, 1);
+		board.addPiece(new Knight("bk5", Piece.BLACK, true), 1, 2);
+		board.addPiece(new Knight("bk6", Piece.BLACK, true), 2, 2);
+		board.addPiece(new Knight("bk7", Piece.BLACK, true), 3, 2);
+		board.addPiece(new Knight("bk8", Piece.BLACK, true), 1, 3);
+		board.addPiece(new Knight("bk9", Piece.BLACK, true), 2, 3);
+		board.addPiece(new Knight("bk10", Piece.BLACK, true), 1, 4);
+		board.addPiece(new Knight("bk11", Piece.BLACK, true), 2, 4);
+		board.addPiece(new Knight("bk12", Piece.BLACK, true), 1, 5);
 
-		board.addPiece(new Knight("wk1", Piece.WHITE), 5, 1);
-		board.addPiece(new Knight("wk2", Piece.WHITE), 5, 2);
-		board.addPiece(new Knight("wk3", Piece.WHITE), 4, 2);
-		board.addPiece(new Knight("wk4", Piece.WHITE), 5, 3);
-		board.addPiece(new Knight("wk5", Piece.WHITE), 4, 3);
-		board.addPiece(new Knight("wk6", Piece.WHITE), 5, 4);
-		board.addPiece(new Knight("wk7", Piece.WHITE), 4, 4);
-		board.addPiece(new Knight("wk8", Piece.WHITE), 3, 4);
-		board.addPiece(new Knight("wk9", Piece.WHITE), 5, 5);
-		board.addPiece(new Knight("wk10", Piece.WHITE), 4, 5);
-		board.addPiece(new Knight("wk11", Piece.WHITE), 3, 5);
-		board.addPiece(new Knight("wk12", Piece.WHITE), 2, 5);		
+		board.addPiece(new Knight("wk1", Piece.WHITE, true), 5, 1);
+		board.addPiece(new Knight("wk2", Piece.WHITE, true), 5, 2);
+		board.addPiece(new Knight("wk3", Piece.WHITE, true), 4, 2);
+		board.addPiece(new Knight("wk4", Piece.WHITE, true), 5, 3);
+		board.addPiece(new Knight("wk5", Piece.WHITE, true), 4, 3);
+		board.addPiece(new Knight("wk6", Piece.WHITE, true), 5, 4);
+		board.addPiece(new Knight("wk7", Piece.WHITE, true), 4, 4);
+		board.addPiece(new Knight("wk8", Piece.WHITE, true), 3, 4);
+		board.addPiece(new Knight("wk9", Piece.WHITE, true), 5, 5);
+		board.addPiece(new Knight("wk10", Piece.WHITE, true), 4, 5);
+		board.addPiece(new Knight("wk11", Piece.WHITE, true), 3, 5);
+		board.addPiece(new Knight("wk12", Piece.WHITE, true), 2, 5);		
 		
 		board.addDecorationToField(1, 1, plotDot(Color.WHITE));
 		board.addDecorationToField(2, 1, plotDot(Color.WHITE));

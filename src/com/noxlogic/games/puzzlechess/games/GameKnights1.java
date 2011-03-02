@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Bitmap.Config;
-import android.util.Log;
 
 public class GameKnights1 extends Game {	
 
@@ -29,10 +28,10 @@ public class GameKnights1 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Knight("wk1", Piece.WHITE), 2, 1);
-		board.addPiece(new Knight("wk2", Piece.WHITE), 2, 3);
-		board.addPiece(new Knight("bk1", Piece.BLACK), 3, 3);
-		board.addPiece(new Knight("bk2", Piece.BLACK), 5, 2);
+		board.addPiece(new Knight("wk1", Piece.WHITE, true), 2, 1);
+		board.addPiece(new Knight("wk2", Piece.WHITE, true), 2, 3);
+		board.addPiece(new Knight("bk1", Piece.BLACK, true), 3, 3);
+		board.addPiece(new Knight("bk2", Piece.BLACK, true), 5, 2);
 		
 		board.addDecorationToField(2, 1, plotDot(Color.BLACK));
 		board.addDecorationToField(2, 3, plotDot(Color.BLACK));

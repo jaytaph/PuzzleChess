@@ -25,12 +25,12 @@ public class GameTest1 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Knight("wr1", Piece.WHITE), 1, 1);
-		board.addPiece(new Rook("wr2", Piece.WHITE), 2, 2);
-		board.addPiece(new Bishop("wr3", Piece.WHITE), 3, 3);
-		board.addPiece(new Pawn("wr4", Piece.WHITE), 4, 4);
-		board.addPiece(new King("wr5", Piece.WHITE), 5, 5);
-		board.addPiece(new Queen("wr6", Piece.WHITE), 6, 6);
+		board.addPiece(new Knight("wr1", Piece.WHITE, true), 1, 1);
+		board.addPiece(new Rook("wr2",   Piece.WHITE, true), 2, 2);
+		board.addPiece(new Bishop("wr3", Piece.WHITE, true), 3, 3);
+		board.addPiece(new Pawn("wr4",   Piece.WHITE, true), 4, 4);
+		board.addPiece(new King("wr5",   Piece.WHITE, true), 5, 5);
+		board.addPiece(new Queen("wr6",  Piece.WHITE, true), 6, 6);
 			
 		addBoard(board);
 	}

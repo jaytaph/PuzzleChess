@@ -76,61 +76,71 @@ abstract public class Game {
 	
 	Piece getSelectedPiece() {
 		if (_selected_x == -1) return null;
-		
+
 		Piece piece = _board.getPieceFromXY(_selected_x, _selected_y);
 		return piece;
 	}
 	
 	protected void _onClickNoSelection (int x, int y) {
+		// Is this field enabled?
 		if (! _board.isFieldEnabled(x, y)) {
 			setError ("Nothing selected since field is not enabled");
 			return;
 		}
 		
+		// Select piece from position
 		Piece piece = _board.getPieceFromXY(x,y);
 		if (piece == null) {
 			setError ("Nothing selected since field was empty");
 			return;
 		}
 		
-		if (hasGameOption(Game.GAMEOPTION_WHITEFIXED) && piece.getColor() == Piece.WHITE) {
-			setError ("Cannot move white pieces");
-			return;
-		}
-		if (hasGameOption(Game.GAMEOPTION_BLACKFIXED) && piece.getColor() == Piece.BLACK) {
-			setError ("Cannot move black pieces");
+		// Can we actually move the piece?
+		if (! piece.isMoveable()) {
+			setError ("Cannot move this piece");
 			return;
 		}
 
+		// Set _selected coordinates
 		_selected_x = x;
 		_selected_y = y;
-		
+
+		// Mark the border as yellow
 		_board.setBorderColor(x, y, Color.YELLOW);
-		
+
+		// Find available moves
 		for (int[] field : piece.getAvailableMoves()) {
 			int dst_x = field[0];
 			int dst_y = field[1];
-			
+
+			// Find the color to print
 			Piece dst_piece = _board.getPieceFromXY(dst_x, dst_y);
 			int border_color = dst_piece != null ? Color.RED : Color.GREEN;
-						
+
+			// @TODO: Pieces we can overtake should have a different cellcolor maybe?
+
+			// Print the cell with the border color
 			_board.setBorderColor (dst_x, dst_y, border_color);
 		}
 	}
 		
 	protected void _onClickSelectionSameField (int x, int y) {
+		// Same field selected, unselect cell
 		_selected_x = -1;
 		_selected_y = -1;
+
+		// Remove all colors again
 		_board.removeAllBorderColors ();
 	}
 	
 	protected void _onClickSelectionOtherField(int x, int y) {
+		// Check if the selected field is enabled
 		if (! _board.isFieldEnabled(x, y)) return;
-		
+
+		// Get source and destination pieces
 		Piece dst_piece = _board.getPieceFromXY(x, y);
 		Piece src_piece = _board.getPieceFromXY(_selected_x, _selected_y);
-		
-		
+
 		// First check if we can actually move to here
 		boolean allowed_move = false;
 		for (int[] field : src_piece.getAvailableMoves()) {

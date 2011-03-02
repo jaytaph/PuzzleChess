@@ -20,14 +20,14 @@ public class GameQueen3 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Queen("wq1", Piece.WHITE), 0, 0);
-		board.addPiece(new Queen("wq2", Piece.WHITE), 1, 0);
-		board.addPiece(new Queen("wq3", Piece.WHITE), 2, 0);
-		board.addPiece(new Queen("wq4", Piece.WHITE), 3, 0);
-		board.addPiece(new Queen("wq5", Piece.WHITE), 4, 0);
-		board.addPiece(new Queen("wq6", Piece.WHITE), 5, 0);
-		board.addPiece(new Queen("wq7", Piece.WHITE), 6, 0);
-		board.addPiece(new Queen("wq8", Piece.WHITE), 7, 0);
+		board.addPiece(new Queen("wq1", Piece.WHITE, true), 0, 0);
+		board.addPiece(new Queen("wq2", Piece.WHITE, true), 1, 0);
+		board.addPiece(new Queen("wq3", Piece.WHITE, true), 2, 0);
+		board.addPiece(new Queen("wq4", Piece.WHITE, true), 3, 0);
+		board.addPiece(new Queen("wq5", Piece.WHITE, true), 4, 0);
+		board.addPiece(new Queen("wq6", Piece.WHITE, true), 5, 0);
+		board.addPiece(new Queen("wq7", Piece.WHITE, true), 6, 0);
+		board.addPiece(new Queen("wq8", Piece.WHITE, true), 7, 0);
 			
 		addBoard(board);
 	}

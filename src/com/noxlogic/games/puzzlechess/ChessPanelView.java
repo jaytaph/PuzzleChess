@@ -83,18 +83,7 @@ public class ChessPanelView extends View {
     	
     	
     }
-    
-//	void createDialog(String s) {
-//		// Display about box
-//		Dialog goal = new AlertDialog.Builder(this.getContext())
-//			.setTitle(R.string.generalGoalTitle)
-//			.setIcon(R.drawable.wk)
-//			.setPositiveButton(R.string.generalGoalButtonCaption, null)
-//			.setMessage(s)
-//			.create();
-//		goal.show();  	
-//	}    
-
+      
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     }
     
@@ -112,34 +101,5 @@ public class ChessPanelView extends View {
     	
         return true;
     }    
-
-//    public void surfaceCreated(SurfaceHolder holder) {
-//    	MyApp app = ((MyApp)getContext().getApplicationContext());
-//    	
-//		// Display goal box at startup
-//		Dialog goal = new AlertDialog.Builder(getContext())
-//			.setTitle(R.string.generalGoalTitle)
-//			.setIcon(R.drawable.wq)
-//			.setPositiveButton(R.string.generalGoalButtonCaption, null)
-//			.setMessage(app.getGame().getObjective())
-//			.create();
-//		goal.show(); 
-//    }
-    
-//    public void surfaceDestroyed(SurfaceHolder holder) {
-//        // simply copied from sample application LunarLander:
-//        // we have to tell thread to shut down & wait for it to finish, or else
-//        // it might touch the Surface after we return and explode
-//        boolean retry = true;
-//        _thread.setRunning(false);
-//        while (retry) {
-//            try {
-//                _thread.join();
-//                retry = false;
-//            } catch (InterruptedException e) {
-//                // we will try it again and again...
-//            }
-//        }
-//    }
 		 
 }

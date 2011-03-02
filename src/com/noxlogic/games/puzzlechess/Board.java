@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
@@ -16,6 +17,7 @@ public class Board {
 	protected ArrayList<Piece> _pieces;
 	protected boolean _enabled_fields[][];
 	protected ArrayList<int[]> _border_colors;
+	protected ArrayList<int[]> _traveled_cells;
 	protected Bitmap _field_decorations[][];
 	protected Game _game;
 	protected Bitmap _boardBitmap = null;
@@ -33,9 +35,9 @@ public class Board {
 	public Board (Game game, boolean[][] fields) {
 		_game = game;
 		
-		
 		_pieces = new ArrayList<Piece>();
 		_border_colors = new ArrayList<int[]>();
+		_traveled_cells = new ArrayList<int[]>();
 			
 		_field_decorations = new Bitmap[8][8];
 		for (int y=0; y!=8; y++) {
@@ -134,6 +136,9 @@ public class Board {
 	 * @param y
 	 */
 	public void movePiece (Piece piece, int x, int y) {
+		// Always add travel path, even if we don't use it
+		_traveled_cells.add (new int[] { piece.getX(), piece.getY(), Color.CYAN } );
+		
 		Piece dst_piece = getPieceFromXY(x, y);
 		if (dst_piece != null) {		
 			for (Piece p : _pieces) {
@@ -161,6 +166,15 @@ public class Board {
 		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public ArrayList<Piece> getPieces() {
+		return _pieces;
+	}
+
 	
 	/**
 	 * Returns true when the X:Y is empty.
@@ -298,26 +312,46 @@ public class Board {
     		
     	}
     	
+    	// Draw trace path if needed
+    	if (_game.hasGameOption(Game.GAMEOPTION_TRACEMOVES)) {
+    		for (int[] i : _traveled_cells) {
+    			_drawBackground(canvas, off_x, off_y, i[0], i[1], i[2]);
+    		}
+    	}
+    	
     	// Draw borders if needed
     	for (int[] i : _border_colors) {
-    		int ix = i[0];
-    		int iy = i[1];
-    		int ic = i[2];
-    		
-	        Paint paint=new Paint();      
-	        paint.setAntiAlias(true);
-	        
-	        paint.setColor(ic);
-	        paint.setStyle(Paint.Style.STROKE);
-	        paint.setStyle(Paint.Style.FILL);
-	        paint.setStrokeWidth(2);
-	        paint.setAlpha(128);
-	        
-	        int cx = off_x + (ix*40);
-	        int cy = off_y + (iy*40);
-	        
-	        canvas.drawRect(new Rect(cx, cy, cx+40, cy+40), paint);			    		
+    		_drawBackground(canvas, off_x, off_y, i[0], i[1], i[2]);
     	}	
+	}
+	
+	void _drawBackground(Canvas canvas, int off_x, int off_y, int ix, int iy, int ic) {
+		Paint paint=new Paint();      
+		paint.setAntiAlias(true);
+
+		paint.setColor(ic);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStyle(Paint.Style.FILL);
+		paint.setStrokeWidth(2);
+		paint.setAlpha(128);
+
+		int cx = off_x + (ix*40);
+		int cy = off_y + (iy*40);
+
+		canvas.drawRect(new Rect(cx, cy, cx+40, cy+40), paint);
+	}
+	
+	
+	public ArrayList<int[]> getTraveledCells() {
+		return _traveled_cells;
+	}
+	
+	
+	public boolean hasTraveled(int x, int y) {
+		for (int[] i : _traveled_cells) {
+			if (i[0] == x && i[1] == y) return true;
+		}
+		return false;
 	}
 
 }

@@ -26,16 +26,29 @@ public class GameQueen1 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Queen("wq1", Piece.WHITE), 2, 2);
-		board.addPiece(new Queen("wq2", Piece.WHITE), 3, 2);
-		board.addPiece(new Queen("wq3", Piece.WHITE), 4, 2);
-		board.addPiece(new Queen("wq4", Piece.WHITE), 5, 2);
+		board.addPiece(new Queen("wq1", Piece.WHITE, true), 2, 2);
+		board.addPiece(new Queen("wq2", Piece.WHITE, true), 3, 2);
+		board.addPiece(new Queen("wq3", Piece.WHITE, true), 4, 2);
+		board.addPiece(new Queen("wq4", Piece.WHITE, true), 5, 2);
 				
 		addBoard(board);
 	}
 		
 	public boolean hasWon() {
 		return false;
+		
+//		// Check all pieces
+//		for (Piece piece : getBoard().getPieces()) {
+//			// Check the moves that can be made by this piece
+//			for (int[] field : piece.getLineOfSight()) {
+//				// Check if there is a piece on destination. If so, we must return false
+//				Piece dst_piece = getBoard().getPieceFromXY(field[0], field[1]);
+//				if (dst_piece != null) return false;
+//			}
+//		}
+//		
+//		// All available moves have a empty destination (aka: no pieces are in line of sight from eachother)
+//		return true;
 	}
 
 	public String getObjective() {

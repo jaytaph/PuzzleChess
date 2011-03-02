@@ -26,11 +26,11 @@ public class GameQueen2 extends Game {
 		Board board = new Board(this, fields);
 		
 		// Add pieces to the board
-		board.addPiece(new Queen("bq1", Piece.BLACK), 1, 1);
-		board.addPiece(new Queen("bq2", Piece.BLACK), 2, 1);
-		board.addPiece(new Queen("bq3", Piece.BLACK), 3, 1);
-		board.addPiece(new Queen("bq4", Piece.BLACK), 4, 1);
-		board.addPiece(new Queen("bq5", Piece.BLACK), 5, 1);
+		board.addPiece(new Queen("bq1", Piece.BLACK, true), 1, 1);
+		board.addPiece(new Queen("bq2", Piece.BLACK, true), 2, 1);
+		board.addPiece(new Queen("bq3", Piece.BLACK, true), 3, 1);
+		board.addPiece(new Queen("bq4", Piece.BLACK, true), 4, 1);
+		board.addPiece(new Queen("bq5", Piece.BLACK, true), 5, 1);
 				
 		addBoard(board);
 	}

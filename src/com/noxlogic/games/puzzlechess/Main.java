@@ -16,6 +16,8 @@ import com.noxlogic.games.puzzlechess.games.GameQueen2;
 import com.noxlogic.games.puzzlechess.games.GameQueen3;
 import com.noxlogic.games.puzzlechess.games.GameQueen4;
 import com.noxlogic.games.puzzlechess.games.GameTest1;
+import com.noxlogic.games.puzzlechess.games.GameTraveller1;
+import com.noxlogic.games.puzzlechess.games.GameTraveller2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -63,7 +65,7 @@ public class Main extends Activity {
 		gr.resource = R.drawable.wn;
 		gr.difficulty = 3;
 		gr.title = "Knights #1";
-		gr.subtitle = "Switch the knights around";
+		gr.subtitle = "Switch the knights around the board";
 		gr.game = new GameKnights1();
 		games.add(gr);
 		
@@ -71,7 +73,7 @@ public class Main extends Activity {
 		gr.resource = R.drawable.wn;
 		gr.difficulty = 4;
 		gr.title = "Knights #2";
-		gr.subtitle = "Switch the knights around";
+		gr.subtitle = "Switch the knights around the board";
 		gr.game = new GameKnights2();
 		games.add(gr);
 		
@@ -79,7 +81,7 @@ public class Main extends Activity {
 		gr.resource = R.drawable.wn;
 		gr.difficulty = 5;
 		gr.title = "Knights #3";
-		gr.subtitle = "Switch the knights around";
+		gr.subtitle = "Switch the knights around the board";
 		gr.game = new GameKnights3();
 		games.add(gr);
 		
@@ -122,6 +124,24 @@ public class Main extends Activity {
 		gr.subtitle = "";
 		gr.game = new GameBishop1();
 		games.add(gr);
+		
+		gr = new GameRow();
+		gr.resource = R.drawable.wn;
+		gr.difficulty = 1;
+		gr.title = "Traveling knights #1";
+		gr.subtitle = "Travel the knight around the board";
+		gr.game = new GameTraveller1();
+		games.add(gr);
+		
+		gr = new GameRow();
+		gr.resource = R.drawable.wn;
+		gr.difficulty = 5;
+		gr.title = "Traveling knights #2";
+		gr.subtitle = "Travel the knight around the board";
+		gr.game = new GameTraveller2();
+		games.add(gr);
+
+
 		
 		
 		// Create  
