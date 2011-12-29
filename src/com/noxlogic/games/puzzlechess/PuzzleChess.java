@@ -98,8 +98,14 @@ public class PuzzleChess extends Activity {
                                     			
                         // Display end results
             			String s = "";
-            			if (won) s = "Congratulations. You have completed this game.";
-            			if (lost) s = "Sorry. You've lost.";
+            			if (won) {
+            				s = "Congratulations. You have completed this game.";
+            				DataHelper dh = DataHelper.getInstance();
+            				dh.setCompleted(_panel.getGame().getPuzzleId(), 1);
+            			}
+            			if (lost) {
+            				s = "Sorry. You've lost.";
+            			}
             			
         			    new AlertDialog.Builder(PuzzleChess.this)
     			    	.setIcon(android.R.drawable.ic_dialog_alert)

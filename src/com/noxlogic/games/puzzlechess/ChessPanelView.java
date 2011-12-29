@@ -89,8 +89,8 @@ public class ChessPanelView extends View {
     
     public boolean onTouchEvent(MotionEvent event) {
     	if (event.getAction() == MotionEvent.ACTION_DOWN) {
-    		int tmp_x = (int)(event.getX() / 40);
-    		int tmp_y = (int)(event.getY() / 40);
+    		int tmp_x = (int)(event.getX() / Board.CELLSIZE);
+    		int tmp_y = (int)(event.getY() / Board.CELLSIZE);
     	
     		if (tmp_x < 8 && tmp_y < 8) {
     			_game.onClick (tmp_x, tmp_y);

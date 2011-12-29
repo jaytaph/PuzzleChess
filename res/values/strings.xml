@@ -16,7 +16,7 @@
     
     <string name="generalAboutTitle">About...</string>
     <string name="generalAboutButtonCaption">Close</string>
-    <string name="generalAboutMessage">ChessPuzzles is created by NoxLogic. For more info visit www.noxlogic.nl\n\nCopyright (C) 2010 NoxLogic</string>
+    <string name="generalAboutMessage">ChessPuzzles is created by NoxLogic. For more info visit www.noxlogic.nl\n\nCopyright (C) 2011 NoxLogic</string>
     
     <string name="generalGoalTitle">Goal...</string>
     <string name="generalGoalButtonCaption">Start game</string>

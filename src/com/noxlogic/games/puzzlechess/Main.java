@@ -2,7 +2,6 @@ package com.noxlogic.games.puzzlechess;
 
 // @TODO: Implement game status & resets
 // @TODO: Scalable boards + pieces
-// @TODO: Add pieces
 
 import java.util.ArrayList;
 
@@ -18,6 +17,7 @@ import com.noxlogic.games.puzzlechess.games.GameQueen4;
 import com.noxlogic.games.puzzlechess.games.GameTest1;
 import com.noxlogic.games.puzzlechess.games.GameTraveller1;
 import com.noxlogic.games.puzzlechess.games.GameTraveller2;
+import com.noxlogic.games.puzzlechess.DataHelper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -47,105 +48,25 @@ public class Main extends Activity {
 	protected Game _game;
 	public static ArrayList<GameRow> games;  
 	
-	public void onCreate(Bundle icicle) {
+	public void onCreate(Bundle savedInstanceState) {
+        // Create instance of the database singleton. This needs a context 
+        DataHelper.createInstance (this.getApplicationContext());
+		
 		games = new ArrayList<GameRow>();
-		
-		// These are all the puzzles that are inside this game
-		GameRow gr;		
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 3;
-		gr.title = "TEST";
-		gr.subtitle = "TEST TEST";
-		gr.game = new GameTest1();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 3;
-		gr.title = "Knights #1";
-		gr.subtitle = "Switch the knights around the board";
-		gr.game = new GameKnights1();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 4;
-		gr.title = "Knights #2";
-		gr.subtitle = "Switch the knights around the board";
-		gr.game = new GameKnights2();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 5;
-		gr.title = "Knights #3";
-		gr.subtitle = "Switch the knights around the board";
-		gr.game = new GameKnights3();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wq;
-		gr.difficulty = 1;
-		gr.title = "Queens #1";
-		gr.subtitle = "";
-		gr.game = new GameQueen1();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wq;
-		gr.difficulty = 2;
-		gr.title = "Queens #2";
-		gr.subtitle = "";
-		gr.game = new GameQueen2();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wq;
-		gr.difficulty = 3;
-		gr.title = "Queens #3";
-		gr.subtitle = "";
-		gr.game = new GameQueen3();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wq;
-		gr.difficulty = 3;
-		gr.title = "Queens #4";
-		gr.subtitle = "";
-		gr.game = new GameQueen4();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wb;
-		gr.difficulty = 2;
-		gr.title = "Bishop #1";
-		gr.subtitle = "";
-		gr.game = new GameBishop1();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 1;
-		gr.title = "Traveling knights #1";
-		gr.subtitle = "Travel the knight around the board";
-		gr.game = new GameTraveller1();
-		games.add(gr);
-		
-		gr = new GameRow();
-		gr.resource = R.drawable.wn;
-		gr.difficulty = 5;
-		gr.title = "Traveling knights #2";
-		gr.subtitle = "Travel the knight around the board";
-		gr.game = new GameTraveller2();
-		games.add(gr);
-
-
-		
+		games.add( new GameRow( 1, R.drawable.wn, 3, new GameTest1(),      "TEST", "TEST"));
+		games.add( new GameRow( 2, R.drawable.wn, 3, new GameKnights1(),   "Knights #1", "Switch the knights around the board"));
+		games.add( new GameRow( 3, R.drawable.wn, 4, new GameKnights2(),   "Knights #2", "Switch the knights around the board"));
+		games.add( new GameRow( 4, R.drawable.wn, 5, new GameKnights3(),   "Knights #3", "Switch the knights around the board"));
+		games.add( new GameRow( 5, R.drawable.wq, 1, new GameQueen1(),     "Queens #1",  ""));
+		games.add( new GameRow( 6, R.drawable.wq, 2, new GameQueen2(),     "Queens #2", ""));
+		games.add( new GameRow( 7, R.drawable.wq, 3, new GameQueen3(),     "Queens #3", ""));
+		games.add( new GameRow( 8, R.drawable.wq, 3, new GameQueen4(),     "Queens #4", ""));
+		games.add( new GameRow( 9, R.drawable.wb, 2, new GameBishop1(),    "Bishop #1", ""));
+		games.add( new GameRow(10, R.drawable.wn, 1, new GameTraveller1(), "Traveling knights #1", "Travel the knight around the board"));
+		games.add( new GameRow(11, R.drawable.wn, 5, new GameTraveller2(), "Traveling knights #2", "Travel the knight around the board"));
 		
 		// Create  
-		super.onCreate(icicle);
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainmenu);
 		
 		// Add listview with context menu
@@ -160,13 +81,31 @@ public class Main extends Activity {
             	GameRow gr = games.get((int) id);
             	
             	MyApp app = ((MyApp)getApplicationContext());
-            	app.setGame(gr.game);
+            	app.setGame(gr.game, gr.id);
+            	
+				DataHelper dh = DataHelper.getInstance();
+				dh.setCompleted(gr.id, 1);
+				Log.d("knights", "Completed "+gr.id);
             	 
                 Intent gameIntent = new Intent ();
                 gameIntent.setClass(getBaseContext(), PuzzleChess.class);
                 startActivity(gameIntent);
             }
         });		
+	}
+	
+	/*
+	 * The game could have been won. We need to update the listview
+	 */
+	public void onResume() {
+		super.onResume();
+		
+		Log.d("knights", "onResume() called");
+		
+		ListView gameListview = (ListView)findViewById(R.id.GameListView);
+		//EfficientAdapter adapter = (EfficientAdapter) gameListview.getAdapter();
+		gameListview.setAdapter(new EfficientAdapter(this));
+		//adapter.notifyDataSetChanged();
 	}
 	
 	// Create options menu
@@ -220,7 +159,7 @@ public class Main extends Activity {
     		case R.id.play_menu_item :
             				// Play the game (merge with clicklistener)
     						MyApp app = ((MyApp)getApplicationContext());
-    						app.setGame(gr.game);
+    						app.setGame(gr.game, gr.id);
             	 
     						Intent gameIntent = new Intent ();
     						gameIntent.setClass(getApplicationContext(), PuzzleChess.class);
@@ -249,6 +188,7 @@ public class Main extends Activity {
             						public void onClick(DialogInterface dialog, int which) {
             							Toast toast = Toast.makeText(getApplicationContext(), "reset called for all items", Toast.LENGTH_SHORT);
             							toast.show();
+            							// @TODO: Actually reset all games
             						}
             					})
             					.setNegativeButton("No", null)
@@ -257,27 +197,29 @@ public class Main extends Activity {
         }
         return true;
     }        
-	
-    
-
-
-	// // Returns game
-	// Game getGame() {
-	// return _game;
-	// }
-	//
-	// void setGame(Game game) {
-	// _game = game;
-	// }
-    	
     
     // Simple class to hold a game (populated in the oncreate())
     static class GameRow {
+    	 int id;
 		 int resource;
 		 int difficulty;
 		 String title;
 		 String subtitle;
 		 Game game;
+		 boolean done;
+		 
+		 GameRow(int id, int resource, int difficulty, Game game, String title, String subtitle) {
+			 this.id = id;
+			 this.resource = resource;
+			 this.difficulty = difficulty;
+			 this.game = game;
+			 this.title = title;
+			 this.subtitle = subtitle;
+			 
+			 DataHelper dh = DataHelper.getInstance();
+			 if (! dh.gameExists(id)) dh.createGame(id);
+			 this.done = dh.isCompleted(id);
+		 }
 	}
 	
     
@@ -321,7 +263,9 @@ public class Main extends Activity {
 			 holder.title.setText(gr.title);
 			 holder.subtitle.setText(gr.subtitle);
 			 holder.rating.setRating(gr.difficulty);
-			 holder.done.setBackgroundResource(R.drawable.checkmark2);
+			 if (gr.done) {
+				 holder.done.setBackgroundResource(R.drawable.checkmark2);
+			 }
 			 return convertView;
 		 }
 

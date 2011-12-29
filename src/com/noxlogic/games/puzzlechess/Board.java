@@ -24,6 +24,9 @@ public class Board {
 	
 	// Animation support
 	static final int ANIMATION_MAXFRAMES   = 25;
+	
+	static final int BOARDSIZE = 480;
+	static final int CELLSIZE = 60;
 			
 	
 	/** 
@@ -245,7 +248,7 @@ public class Board {
 	 * @param panel
 	 */
 	protected void _cacheBoardBitmap (ChessPanelView panel) {			
-		_boardBitmap = Bitmap.createBitmap(320, 320, Config.ARGB_8888);
+		_boardBitmap = Bitmap.createBitmap(BOARDSIZE, BOARDSIZE, Config.ARGB_8888);
 		Canvas bitmapcanvas = new Canvas(_boardBitmap);
 				
 		MyApp app = ((MyApp)panel.getContext().getApplicationContext());
@@ -262,10 +265,10 @@ public class Board {
 				p.setAlpha(64);
 
 				if (_game.getBoard().isFieldEnabled(x, y)) p = null;
-				bitmapcanvas.drawBitmap(cb, (x*40), (y*40), p);
+				bitmapcanvas.drawBitmap(cb, (x*CELLSIZE), (y*CELLSIZE), p);
 				
 				if (_field_decorations[x][y] != null) { 
-					bitmapcanvas.drawBitmap(_field_decorations[x][y], (x*40), (y*40), p);
+					bitmapcanvas.drawBitmap(_field_decorations[x][y], (x*CELLSIZE), (y*CELLSIZE), p);
 				}
 				
 				cb = cb == _dark ? _light : _dark;
@@ -303,11 +306,11 @@ public class Board {
     	for (Piece p : _pieces) {
     		if (p.isAnimated()) {
     			// Items currently animated have a different X/Y (floating point)
-    			int dx = (int) ((p.getX()/100.0)*40);
-    			int dy = (int) ((p.getY()/100.0)*40);
+    			int dx = (int) ((p.getX()/100.0)*CELLSIZE);
+    			int dy = (int) ((p.getY()/100.0)*CELLSIZE);
     			canvas.drawBitmap(p.getBitmap(panel), dx, dy, null);
     		} else {
-        		canvas.drawBitmap(p.getBitmap(panel), p.getX()*40, p.getY()*40, null);
+        		canvas.drawBitmap(p.getBitmap(panel), p.getX()*CELLSIZE, p.getY()*CELLSIZE, null);
     		}
     		
     	}
@@ -335,10 +338,10 @@ public class Board {
 		paint.setStrokeWidth(2);
 		paint.setAlpha(128);
 
-		int cx = off_x + (ix*40);
-		int cy = off_y + (iy*40);
+		int cx = off_x + (ix*CELLSIZE);
+		int cy = off_y + (iy*CELLSIZE);
 
-		canvas.drawRect(new Rect(cx, cy, cx+40, cy+40), paint);
+		canvas.drawRect(new Rect(cx, cy, cx+CELLSIZE, cy+CELLSIZE), paint);
 	}
 	
 	

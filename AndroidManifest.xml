@@ -3,6 +3,9 @@
       package="com.noxlogic.games.puzzlechess"
       android:versionCode="1"
       android:versionName="1.0">
+      
+      <uses-sdk android:minSdkVersion="7"  android:targetSdkVersion="7" />
+      
     <application android:name=".MyApp"
                  android:label="@string/app_name" 
                  android:debuggable="true" 
@@ -12,6 +15,15 @@
         	android:label="puzzlechess"
         	android:screenOrientation="portrait">
     	</activity>
+    	
+    	
+    	
+	<!--  We need to upgrade to SDK 1.6 and we can support larger screens -->
+	<supports-screens
+		android:largeScreens="true"
+		android:normalScreens="true"
+		android:smallScreens="true"
+		android:anyDensity="true" />     
         
         <activity android:name="Main"
                   android:label="PuzzleChess">
@@ -23,5 +35,4 @@
 
     </application>
 
-	<uses-sdk android:minSdkVersion="3"></uses-sdk>
 </manifest> 

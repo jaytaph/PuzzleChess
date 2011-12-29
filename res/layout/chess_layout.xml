@@ -3,8 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" android:orientation="vertical">
 
-	<com.noxlogic.games.puzzlechess.ChessPanelView android:id="@+id/ChessPanel01" android:layout_width="320px" android:layout_height="320px"></com.noxlogic.games.puzzlechess.ChessPanelView>
-	
+	<com.noxlogic.games.puzzlechess.ChessPanelView android:id="@+id/ChessPanel01" android:layout_width="480px" android:layout_height="480px"></com.noxlogic.games.puzzlechess.ChessPanelView>
 	
 	<TableLayout android:id="@+id/TableLayout01" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_margin="10px" android:stretchColumns="*">
 		<TableRow android:id="@+id/TableRow01">

@@ -2,18 +2,17 @@ package com.noxlogic.games.puzzlechess.games;
 
 import com.noxlogic.games.puzzlechess.Board;
 import com.noxlogic.games.puzzlechess.ChessPanelView;
-import com.noxlogic.games.puzzlechess.History;
 import com.noxlogic.games.puzzlechess.pieces.Piece;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 
 abstract public class Game {
+	protected int _puzzle_id;			// Id of this puzzle inside the database
 	protected int _movesDone = 0;		// Number of moves that are done
 	protected int _movesLeft = 0;		// Number of moves that are left
 	protected int _time = 0;			// Current time spend on puzzle
 	protected Board _board;				// The actual board
-	protected History _history;			// History (not used)
 	protected int _selected_x = -1;		// Selected cell X position
 	protected int _selected_y = -1;		// Selected cell Y position
 	protected int _game_options = 0;	// Game options (bitwise options, see GAMEOPTION_*)
@@ -34,7 +33,6 @@ abstract public class Game {
 	public abstract String getObjective();
 	
 	Game () {
-		_history = new History(this);
 		init ();
 	}
 	
@@ -42,7 +40,6 @@ abstract public class Game {
 		_movesDone = 0;
 		_movesLeft = 0;		
 		_time = 0; 
-		_history = new History(this);
 		init ();
 	}	
 		
@@ -299,6 +296,11 @@ abstract public class Game {
 	public int getDuration() {
 		return _time;
 	}
-
+	public void setPuzzleId(int puzzle_id) {
+		_puzzle_id = puzzle_id;
+	}
+	public int getPuzzleId() {
+		return _puzzle_id;
+	}
 }
 
